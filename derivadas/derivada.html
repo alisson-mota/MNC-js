@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/mathjs/dist/math.min.js"> </script>
+		<script src="derivada_de_uma_var.js"></script>
+		<script src="desenha.js"></script>
+		<script src="desenha_pequeno.js"></script>
+		
+	</head>
+
+	<body background-color:lightblue>
+
+		<div align="center" >	
+			<h1>Derivadas de funçõe de uma variavel</h2>	
+
+			<label>F(x) = </label>
+			<input type="text" id="func">
+			<label>x = </label>
+			<input type="text" id="vari">
+			<label>Erro permitido</label>
+			<input type="text" id="e">			
+			<button id="btn_deriva"> derivar</button>
+
+
+			<p id="result"></p>
+		</div>
+
+		<div align="center">
+				<canvas id="canvasGrafico"></canvas>
+		</div>
+
+		<div align="center">
+				<canvas id="canvasGrafico_pequeno"></canvas>
+		</div>		
+
+	</body>
+
+
+	<script>
+
+
+		document.getElementById("btn_deriva").addEventListener("click", function(event){
+			
+			var fun = document.getElementById('func').value
+			var varia = document.getElementById('vari').value
+			var e = document.getElementById('e').value
+
+
+			var num = parseFloat(varia)
+			var erro = parseFloat(e)
+
+			var interpreta = math.parse(fun)
+			var deriv = derivada(interpreta,num,erro)
+
+			document.getElementById('result').innerText = "F'(x) = " + String(deriv)
+ 			console.log(deriv)
+
+			grafic(math.derivative(interpreta, 'x'))
+			grafic_pequeno(math.derivative(interpreta, 'x'))
+
+		})
+	</script>
+
+
+</html>
