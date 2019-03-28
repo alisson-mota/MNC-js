@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/mathjs/dist/math.min.js"> </script>
+	<script src="desenha.js"></script>
+
+</head>
+
+<body>
+	<div>
+		<input type="radio" id="radio_bisseção"> Cálculo pelo método da Bisseção<br>
+		<input type="radio" id="radio_newton"> Cálculo pelo método de Newton<br>
+
+	</div><br><br>
+
+	<div>
+		<label>F(x):</label>
+		<input type="text" id="txt_func">
+		<button id="btn_calc">Cálcular</button>
+	</div>
+
+	<div align="center">
+		<canvas id="canvasGrafico"></canvas>
+	</div>
+
+	<script>
+		
+		document.getElementById('btn_calc').addEventListener("click", function (event) {
+			var func = document.getElementById('txt_func').value
+
+			var interpreta = math.parse(func)
+			grafic(interpreta)
+		})
+	</script>
+
+</body>
+</html>
