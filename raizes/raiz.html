@@ -17,6 +17,7 @@
 	<div>
 		<label>F(x):</label>
 		<input type="text" id="txt_func">
+		<input type="text" id="txt_erro">
 		<button id="btn_calc">Cálcular</button>
 	</div>
 
@@ -26,12 +27,61 @@
 
 	<script>
 		
+		function raiz_bissecao(func,erro,num) {
+			var a = num
+			var b = num+1
+
+			var fa = func.eval({x:a})
+			var fb = func.eval({x:b})
+			var aux_f = 0
+			var aux_erro = 1000
+			var verif = 0
+
+			while(verif == 0){
+
+				if((fa*fb) < 0){
+
+					while(erro<aux_erro){
+						var p = (a+b)/2
+						var fp = func.eval({x:p})
+
+						aux_erro = fp - aux_f
+						if(aux_erro < 0){
+							aux_erro = -aux_erro
+						}
+
+						if((fa*fp) < 0){
+							b = p
+						}
+						else{
+							a = p
+						}
+
+					}
+				
+				console.log('raiz em :'+p)
+				verif = 1
+
+				}
+			}
+
+
+
+			
+		}
+
 		document.getElementById('btn_calc').addEventListener("click", function (event) {
 			var func = document.getElementById('txt_func').value
+			var erro = document.getElementById('txt_erro').value
 
 			var interpreta = math.parse(func)
+
+			var verifraiz = raiz_bissecao(interpreta,erro,0)
+
 			grafic(interpreta)
 		})
+
+
 	</script>
 
 </body>
