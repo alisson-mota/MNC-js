@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/mathjs/dist/math.min.js"> </script>
+	<script src="desenha.js"></script>
+
+</head>
+<body>
+
+	<canvas id="canvasGrafico"></canvas>
+
+	<div align="left">	
+	<label >F(X) = </label>
+	<input type="text" id="funcao" >
+	<input type="submit" id="envia_funcao" ></div></p>
+<br>
+
+<b>valor de Y para X variando de 1 até 50 </b>
+	<table id="resultado">
+		<thead>
+			<tr>
+				<th>X</th>
+				<th>Y</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+
+  <script>
+
+		function monta(inf,classe){
+			var criatd = document.createElement("td");			
+  			criatd.classList.add(classe)
+  			criatd.textContent = inf
+
+  			return criatd
+		}
+
+
+		function inserirgrid(x,y){
+
+
+			var grid = document.querySelector("#resultado")
+			var criatr = document.createElement("tr")
+
+			var funcao={			
+				eixoX: x,
+				eixoY: y
+			}
+
+			
+
+			criatr.classList.add("funcao")
+
+			criatr.appendChild(monta(funcao.eixoX, 'eixo_X'))
+			criatr.appendChild(monta(funcao.eixoY, 'eixo_Y'))
+
+			grid.appendChild(criatr)
+
+		}
+
+
+		
+
+		document.getElementById("envia_funcao").addEventListener("click", function(event){
+			event.preventDefault()
+
+			var func = document.getElementById('funcao').value
+			var interpreta = math.parse(func)
+
+			grafic(interpreta)
+
+				
+			})
+
+
+	</script>
+
+ 
+
+</body>
+
+</html>
